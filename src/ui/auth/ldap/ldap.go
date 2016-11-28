@@ -56,6 +56,7 @@ func (l *Auth) Authenticate(m models.AuthModel) (*models.User, error) {
 		return nil, err
 	}
 	ldap.SetOption(openldap.LDAP_OPT_PROTOCOL_VERSION, openldap.LDAP_VERSION3)
+	ldap.SetOption(openldap.LDAP_OPT_REFERRALS, 0)
 
 	ldapBaseDn := config.LDAP().BaseDn
 	if ldapBaseDn == "" {
